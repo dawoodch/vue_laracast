@@ -12,20 +12,34 @@
 <body>
 
     <div id="root">
-        <input type="text" id="input" v-model="message">
-        <p>The value of input is: {{ message }}</p>
+        <ul>
+            <li v-for="name in names">{{name}}</li>
+        </ul>
+
+        <input type="text" id="input">
+        <button  type="button" id="submit">Add</button>
     </div>
 
 
 
 <script>
 
-    new Vue({
+    var app = new Vue({
         el: '#root',
         data: {
-            message: 'Hello World'
+            names: ['dawood' , 'shehzad', 'molana', 'shahbaz']
+        },
+
+        mounted(){
+            document.querySelector('#submit').addEventListener('click', () => {
+                let name = document.querySelector('#input');
+                app.names.push(name.value);
+                name.value = '';
+            })
         }
     })
+
+
 
 </script>
 </body>
